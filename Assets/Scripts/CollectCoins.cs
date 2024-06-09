@@ -8,6 +8,8 @@ public class CollectCoins : MonoBehaviour
     public GameObject coinParticles;
 
     PlayerMovement playerMovementScript;
+   
+
 
     void OnTriggerEnter(Collider other)
     {

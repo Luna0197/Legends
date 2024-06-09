@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PatrolFinished : MonoBehaviour
 {
-    
+
     [Tooltip("The transform to which the enemy will pace back and forth to.")]
     public Transform[] patrolPoints;
 
@@ -23,5 +23,5 @@ public class PatrolFinished : MonoBehaviour
                 currentPatrolPoint = 0;
             }
         }
-    }    
+    }
 }

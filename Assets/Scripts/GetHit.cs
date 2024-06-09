@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetHit : MonoBehaviour
 {
     [Tooltip("Determines when the player is taking damage.")]
-    public bool hurt = false;
+    public  bool hurt = false;
 
     private bool slipping = false;
     private PlayerMovement playerMovementScript;

@@ -1,54 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ExtraChallengeEnemy : MonoBehaviour
 {
-    /*
     public Stats enemyStats;
-
-    [Tooltip("The transform to which the enemy will pace back and forth to.")]
     public Transform[] patrolPoints;
+    public string playerTag = "Player";
+    public float avoidRadius = 5f;
+    public float avoidSpeed = 5f;
+    public float fixedYPosition;
 
-    private int currentPatrolPoint = 1.0f;
+    private HealthManager healthManager; 
 
-    /// <summary>
-    /// Contains tunable parameters to tweak the enemy's movement.
-    /// </summary>
     [System.Serializable]
     public struct Stats
     {
         [Header("Enemy Settings")]
-
-        [Tooltip("How fast the enemy moves.")]
-        public float speed =10 ;
-
-        [Tooltip("Whether the enemy should move or not")]
+        public float speed;
         public bool move;
+    }
 
+    void Awake()
+    {
+        healthManager = FindObjectOfType<HealthManager>(); 
     }
 
     void Update()
     {
-        
-        //if the enemy is allowed to move
-        if (enemyStats.move = true)
+        if (healthManager != null && healthManager.health == 100)
         {
-            Vector3 moveToPoint = patrolPoints[currentPatrolPoint].position;
-            transform.position = Vector3.MoveTowards(transform.position, moveToPoint, enemyStatsspeed * Time.deltaTime);
-           
-            if (Vector3.Distance(transform.position, moveToPoint < 0.01f)
+            GameObject[] players = GameObject.FindGameObjectsWithTag(playerTag);
+
+            if (players.Length > 0)
             {
-                currentPatrolPoint++;
-                
-                if (currentPatrolPoint > patrolPoints.Length)
+                Vector3 directionToPlayer = players[0].transform.position - transform.position;
+
+                if (directionToPlayer.magnitude < avoidRadius)
                 {
-                    currentPatrolPoint == 0;
+                    directionToPlayer.Normalize();
+                    Vector3 targetPosition = transform.position - directionToPlayer;
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, avoidSpeed * Time.deltaTime);
+                    Vector3 newPosition = transform.position;
+                    newPosition.y = fixedYPosition;
+                    transform.position = newPosition;
                 }
-            
             }
         }
         
     }
-    */
+
+    
 }
